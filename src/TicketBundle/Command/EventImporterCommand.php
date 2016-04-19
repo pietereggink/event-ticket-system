@@ -4,6 +4,7 @@ namespace TicketBundle\Command;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use TicketBundle\Importer\Event\Exception\InvalidElementException;
 use TicketBundle\Importer\Event\Exception\InvalidRowException;
 use TicketBundle\Service\EventImporterService;
 
@@ -50,6 +51,8 @@ class EventImporterCommand extends Command
         try {
             $this->eventImporterService->run($input, $output);
         } catch (InvalidRowException $e) {
+            $output->writeln($e->getMessage());
+        } catch (InvalidElementException $e) {
             $output->writeln($e->getMessage());
         } catch (\Exception $e) {
             $output->writeln($e->getMessage());
