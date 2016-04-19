@@ -1,0 +1,10 @@
+{% extends 'TicketBundle::base.html.twig' %}
+
+{% block body %}
+    <!-- Jumbotron -->
+    <div class="jumbotron">
+        <h1>Event Ticket System</h1>
+        <p class="lead">Bestel eenvoudig tickets voor evenementen.</p>
+        <a class="btn btn-large btn-success" href="{{ path('event_overview') }}">Beschikbare evenementen</a>
+    </div>
+{% endblock %}

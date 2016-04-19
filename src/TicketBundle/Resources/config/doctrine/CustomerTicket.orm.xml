@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="TicketBundle\Entity\CustomerTicket" repository-class="TicketBundle\Repository\CustomerTicketRepository" table="customer_ticket">
+    <indexes>
+      <index name="fk_customer_ticket_1_idx" columns="event_ticket_id"/>
+      <index name="fk_customer_ticket_2_idx" columns="customer_id"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="price" type="decimal" column="price" precision="8" scale="2" nullable="false"/>
+    <field name="numberOfTickets" type="integer" column="number_of_tickets" nullable="false"/>
+    <field name="createdOn" type="datetime" column="created_on" nullable="false"/>
+    <field name="updatedOn" type="datetime" column="updated_on" nullable="false"/>
+    <many-to-one field="customer" target-entity="Customer">
+      <join-columns>
+        <join-column name="customer_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="eventTicket" target-entity="EventTicket">
+      <join-columns>
+        <join-column name="event_ticket_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

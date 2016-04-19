@@ -1,0 +1,46 @@
+{% extends 'TicketBundle::base.html.twig' %}
+
+{% block body %}
+    <h2>Evenement tickets</h2>
+
+    <h3>{{ event.name }}</h3>
+
+    {% if eventTickets is empty %}
+        <p>Op dit moment zijn er geen beschikbare tickets voor dit event.</p>
+    {% else %}
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Naam</th>
+            <th>Omschrijving</th>
+            <th>Prijs</th>
+            <th>Beschikbare tickets</th>
+            <th>&nbsp;</th>
+        </tr>
+        </thead>
+        <tbody>
+        {# @var eventTicket \TicketBundle\Entity\EventTicket #}
+        {% for eventTicket in eventTickets %}
+            <tr>
+                <td>{{ eventTicket.name }}</td>
+                <td>{{ eventTicket.description|slice(0,40) }}...</td>
+                <td>&euro; {{ eventTicket.price }}</td>
+                <td>{{ eventTicket.availableTickets }}</td>
+                <td>
+                    <a href="{{ path('ticket_order', {'id': eventTicket.id}) }}" class="btn btn-small btn-success">
+                        Nu bestellen
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+
+    <p>
+        <a href="{{ path('event_overview') }}" class="btn btn-primary">
+            <i class="icon-chevron-left icon-white"></i>
+            Ga terug
+        </a>
+    </p>
+{% endblock %}

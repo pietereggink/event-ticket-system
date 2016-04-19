@@ -1,0 +1,39 @@
+{% extends 'TicketBundle::base.html.twig' %}
+
+{% block body %}
+    <h2>Evenementen overzicht</h2>
+
+    {% if events is empty %}
+        <p>Op dit moment zijn er geen events.</p>
+    {% else %}
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Naam</th>
+                <th>Locatie</th>
+                <th>Website</th>
+                <th>Begin datum/tijd</th>
+                <th>Eind datum/tijd</th>
+                <th>&nbsp;</th>
+            </tr>
+            </thead>
+            <tbody>
+            {# @var event \TicketBundle\Entity\Event #}
+            {% for event in events %}
+                <tr>
+                    <td>{{ event.name }}</td>
+                    <td>{{ event.location }}</td>
+                    <td><a href="{{ event.website }}" target="_blank">{{ event.website }}</a></td>
+                    <td>{{ event.startDate|date("d/m/Y H:i") }}</td>
+                    <td>{{ event.endDate|date("d/m/Y H:i") }}</td>
+                    <td>
+                        <a href="{{ path('event_tickets', {'id': event.id}) }}" class="btn btn-small btn-success">
+                            Toon beschikbare tickets
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+{% endblock %}

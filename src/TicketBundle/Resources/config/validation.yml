@@ -1,0 +1,13 @@
+TicketBundle\Entity\Form\OrderForm:
+    properties:
+        numberOfTickets:
+            - GreaterThanOrEqual: { value: 1, message: "minimum_number_of_tickets" }
+            - LessThanOrEqual: { value: 5, message: "maximum_number_of_tickets" }
+        firstName:
+            - NotBlank: { message: "first_name_not_blank" }
+        lastName:
+            - NotBlank: { message: "last_name_not_blank" }
+        email:
+            - NotBlank: { message: "email_not_blank" }
+            - TicketBundle\Validator\Constraints\EmailExists: { message: "email_exists" }
+            - Email: {message: "email_not_valid", checkMX: true}

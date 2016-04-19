@@ -1,0 +1,44 @@
+{% extends 'TicketBundle::base.html.twig' %}
+
+{% block body %}
+    <h2>Ticket bestellen</h2>
+
+    {% for error in errors %}
+        <div class="alert alert-danger" role="alert">{{ error.message|trans }}</div>
+    {% endfor %}
+
+    <form method="post" action="{{ path('ticket_order', {'id': eventTicket.id}) }}">
+        <fieldset>
+            <label>Event</label>
+            <input type="text" disabled="disabled" value="{{ event.name }}">
+
+            <label>Ticket type</label>
+            <input type="text" disabled="disabled" value="{{ eventTicket.name }}">
+
+            <label>Prijs</label>
+            <input type="text" disabled="disabled" value="{{ eventTicket.price }}">
+
+            <label>Aantal tickets</label>
+            <select name="number_of_tickets">
+                {% for i in 1..maximumNumberOfTicketsPerPerson %}
+                <option value="{{ i }}" {% if i == form.numberOfTickets %}selected="selected"{% endif %}>{{ i }}</option>
+                {% endfor %}
+            </select>
+
+            <label>Voornaam</label>
+            <input type="text" name="firstName" placeholder="Voornaam" value="{{ form.firstName }}">
+
+            <label>Achternaam</label>
+            <input type="text" name="lastName" placeholder="Achternaam" value="{{ form.lastName }}">
+
+            <label>Email</label>
+            <input type="text" name="email" placeholder="Email" value="{{ form.email }}">
+
+            <span class="help-block">&nbsp;</span>
+
+            <button type="submit" class="btn btn-large btn-success">Nu Bestellen!</button>
+        </fieldset>
+    </form>
+
+    <p><a href="{{ path('event_tickets', {'id': event.id}) }}" class="btn btn-primary"><i class="icon-chevron-left icon-white"></i> Ga terug</a></p>
+{% endblock %}

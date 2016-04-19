@@ -1,0 +1,30 @@
+parameters:
+    event_repository_class: TicketBundle\Entity\Event
+    event_ticket_repository_class: TicketBundle\Entity\EventTicket
+    customer_repository_class: TicketBundle\Entity\Customer
+    customer_ticket_repository_class: TicketBundle\Entity\CustomerTicket
+
+services:
+    event.repository:
+        class: Doctrine\ORM\EntityRepository
+        factory_service: doctrine.orm.default_entity_manager
+        factory_method: getRepository
+        arguments: [%event_repository_class%]
+
+    event_ticket.repository:
+        class: Doctrine\ORM\EntityRepository
+        factory_service: doctrine.orm.default_entity_manager
+        factory_method: getRepository
+        arguments: [%event_ticket_repository_class%]
+
+    customer.repository:
+        class: Doctrine\ORM\EntityRepository
+        factory_service: doctrine.orm.default_entity_manager
+        factory_method: getRepository
+        arguments: [%customer_repository_class%]
+
+    customer_ticket.repository:
+        class: Doctrine\ORM\EntityRepository
+        factory_service: doctrine.orm.default_entity_manager
+        factory_method: getRepository
+        arguments: [%customer_ticket_repository_class%]

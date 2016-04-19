@@ -1,0 +1,15 @@
+services:
+    sabre_xml_service.class:
+        class: Sabre\Xml\Service
+
+    csv_reader.class:
+        class: Keboola\Csv\CsvFile
+        arguments: ["%kernel.root_dir%/../src/TicketBundle/Resources/feeds/events.csv", ";"]
+
+    csv.importer:
+        class: TicketBundle\Importer\Event\CsvImporter
+        arguments: ["@event.service", "@csv_reader.class"]
+
+    xml.importer:
+        class: TicketBundle\Importer\Event\XmlImporter
+        arguments: ["@event.service", "@sabre_xml_service.class", "%kernel.root_dir%/../src/TicketBundle/Resources/feeds/events.xml"]

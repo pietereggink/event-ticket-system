@@ -1,0 +1,35 @@
+imports:
+    - { resource: 'parameters.yml' }
+    - { resource: 'commands.yml' }
+    - { resource: 'repositories.yml' }
+    - { resource: 'validator.yml' }
+    - { resource: 'importers.yml' }
+    - { resource: 'commands.yml' }
+    - { resource: 'listeners.yml' }
+
+services:
+    ticket.service:
+        class: TicketBundle\Service\TicketService
+        arguments: ["@doctrine.orm.entity_manager"]
+
+    customer.service:
+        class: TicketBundle\Service\CustomerService
+        arguments: ["@customer.repository"]
+
+    customer_ticket.service:
+        class: TicketBundle\Service\CustomerTicketService
+        arguments: ["@customer.service", "@customer_ticket.repository"]
+
+    event.service:
+        class: TicketBundle\Service\EventService
+        arguments: ["@event.repository"]
+
+    event_ticket.service:
+        class: TicketBundle\Service\EventTicketService
+        arguments: ["@event_ticket.repository"]
+
+    event_importer.service:
+        class: TicketBundle\Service\EventImporterService
+        calls:
+           - [registerImporter, ['csv', '@csv.importer']]
+           - [registerImporter, ['xml', '@xml.importer']]

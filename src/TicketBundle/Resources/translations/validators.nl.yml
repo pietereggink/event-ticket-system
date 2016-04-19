@@ -1,0 +1,7 @@
+first_name_not_blank: De voornaam moet nog ingevuld worden.
+last_name_not_blank: De achternaam moet nog ingevuld worden.
+email_not_blank: Het e-mailadres moet nog ingevuld worden.
+email_exists: Er bestaat al een account met het e-mailadres dat je hebt ingevuld.
+minimum_number_of_tickets: Het minimaal aantal tickets is {{ compared_value }}.
+maximum_number_of_tickets: Het maximaal aantal tickets is {{ compared_value }}.
+email_not_valid: Het ingevulde e-mailadres {{ value }} is niet correct.

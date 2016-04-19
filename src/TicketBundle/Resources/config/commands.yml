@@ -1,0 +1,6 @@
+services:
+    event_importer.command:
+        class: TicketBundle\Command\EventImporterCommand
+        arguments: ["@event_importer.service"]
+        tags:
+            -  { name: console.command }

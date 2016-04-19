@@ -1,0 +1,6 @@
+services:
+    email_exists.validator:
+        class: TicketBundle\Validator\EmailExistsValidator
+        arguments: ["@customer.service"]
+        tags:
+            - { name: validator.constraint_validator, alias: email_exists }

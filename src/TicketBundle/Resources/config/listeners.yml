@@ -1,0 +1,6 @@
+services:
+    maintenance.listener:
+        class: TicketBundle\Listener\MaintenanceListener
+        arguments: ["@service_container"]
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }

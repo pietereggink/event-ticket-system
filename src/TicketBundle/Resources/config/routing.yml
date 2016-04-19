@@ -1,0 +1,23 @@
+# Ticket routes
+
+ticket_homepage:
+    path:     /
+    defaults: { _controller: TicketBundle:Ticket:index }
+
+ticket_order:
+    path:     /ticket/order/{id}
+    defaults: { _controller: TicketBundle:Ticket:order }
+
+ticket_thank_you:
+    path:     /ticket/thank-you/
+    defaults: { _controller: TicketBundle:Ticket:thankYou }
+
+# Event routes
+
+event_overview:
+    path:     /event/overview
+    defaults: { _controller: TicketBundle:Event:overview }
+
+event_tickets:
+    path:     /event/tickets/{id}
+    defaults: { _controller: TicketBundle:Event:tickets }

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<events xmlns="http://example.org/events">
+    <event>
+        <name>Event C</name>
+        <description>Super nice event</description>
+        <location>Amsterdam</location>
+        <startDate>2016-03-01 00:00:00</startDate>
+        <endDate>2016-03-02 00:00:00</endDate>
+        <website>www.domain-c.com</website>
+    </event>
+    <event>
+        <name>Event D</name>
+        <description>Super nice event</description>
+        <location>Amsterdam</location>
+        <startDate>2016-04-01 00:00:00</startDate>
+        <endDate>2016-04-02 00:00:00</endDate>
+        <website>www.domain-d.com</website>
+        <test>test field</test>
+    </event>
+</events>
